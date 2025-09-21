@@ -73,9 +73,18 @@ searchbtn.addEventListener('click', function(){
            op(data)
             
         })
-
-    }
-    else{
-        alert()
-    }
-})
+       .catch((err) => {
+        // ❌ error → card me dikhana
+        cardui.innerHTML = `
+          <div class="w-full p-6 bg-[#161b22] border border-red-600 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-bold text-red-500">⚠️ ${err.message}</h2>
+            <p class="text-gray-400 mt-2">
+              The username "<span class="text-white">${username}</span>" was not found on GitHub.
+            </p>
+          </div>
+        `;
+      });
+  } else {
+    alert("⚠️ Please enter a username");
+  }
+});
